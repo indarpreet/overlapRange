@@ -9,13 +9,11 @@ import utils.Utility;
 public class RangeOverlapService {
 
 	/**
-	 * Input : This method takes list of range object. 
-	 * Output : index position of the list  
-	 * Description : It takes list of object and provides index of the list till the array is merged!! 
-	 * this approach reduces space complexity!!
+	 * Input : This method takes list of range object. Output : Merged Range object list
+	 * the list Description : It takes list of object and provides merged object in the list
 	 * @param range
 	 */
-	public  List<Range> calculateMinimumRange(List<Range> rangeList) {
+	public List<Range> calculateMinimumRange(List<Range> rangeList) {
 		// check is input list is not null and the range of each object is in proper
 		// format!!
 		if (!Utility.isEmptyOrNull(rangeList) && this.checkForUnsupportedFormat(rangeList)) {
@@ -37,13 +35,14 @@ public class RangeOverlapService {
 					rangeList.set(index, rangeNext);
 				}
 			}
-			return rangeList.subList(0, index+1);
+			return rangeList.subList(0, index + 1);
 		}
 		throw new NullPointerException();
 	}
-	
+
 	/**
 	 * Checks for unsupported format if the lower bound is greater than upper bound
+	 * 
 	 * @param rangeList
 	 * @return
 	 */
@@ -55,6 +54,5 @@ public class RangeOverlapService {
 		}
 		return true;
 	}
-	
 
 }

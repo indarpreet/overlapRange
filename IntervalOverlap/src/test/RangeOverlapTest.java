@@ -1,12 +1,11 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -52,25 +51,23 @@ public class RangeOverlapTest {
 		// given
 		Range range1 = new Range(-00003, -00000);
 		Range range2 = new Range(-00000, -00000);
-		Range range3 = new Range(-94399 , -00000);
+		Range range3 = new Range(-94399, -00000);
 		List<Range> rangeList = new ArrayList<Range>();
 		rangeList.add(range3);
 		rangeList.add(range2);
 		rangeList.add(range1);
 		rangeList = service.calculateMinimumRange(rangeList);
-		
+
 		// then
 		assertEquals(1, rangeList.size());
 	}
-	
-	
 
 	@Test(expected = UnsupportedOperationException.class)
 	public void testRangeOverlapWithArbitraryNegativeInputUnsupportedFormat() {
 		// given
 		Range range1 = new Range(-00000, -00003);
 		Range range2 = new Range(-00000, -00000);
-		Range range3 = new Range(-94399 , -00000);
+		Range range3 = new Range(-94399, -00000);
 		List<Range> rangeList = new ArrayList<Range>();
 		rangeList.add(range3);
 		rangeList.add(range2);

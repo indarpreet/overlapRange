@@ -1,12 +1,10 @@
 package model;
 
-public class Range implements Comparable<Range>{
+public class Range implements Comparable<Range> {
 
 	private int lowerBound;
-	
+
 	private int upperBound;
-	
-	
 
 	public Range(int lowerBound, int upperBound) {
 		this.lowerBound = lowerBound;
@@ -75,5 +73,5 @@ public class Range implements Comparable<Range>{
 	public int compareTo(Range o) {
 		return this.lowerBound - o.lowerBound;
 	}
-	
+
 }

@@ -14,6 +14,7 @@ public class RangeOverlapAction {
 	 * Input from UI/other services
 	 * @param args
 	 */
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		// Input : [94133,94133] [94200,94299] [94226,94399]
 		// Output : [94133,94133] [94200,94399]
@@ -26,15 +27,18 @@ public class RangeOverlapAction {
 		rangeList.add(range1);
 		RangeOverlapAction rangeOverlapProblem = new RangeOverlapAction();
 		UserResponse minRangeList = rangeOverlapProblem.calculateMinimumRange(rangeList);
-		if(null != minRangeList.getError()) {
+		if (null != minRangeList.getError()) {
 			System.out.println(minRangeList.getError());
-		}else {
+		} else {
 			System.out.println(Utility.SUCCESS);
 			printRangeList((List<Range>) minRangeList.getResponse());
 		}
 
 	}
+
 	/**
+	 * Input : range object list.
+	 * Output : {@link UserResponse} provides generic response on success or error
 	 * algorithm that produces the minimum number of ranges
 	 * @param rangeList
 	 */
@@ -42,8 +46,8 @@ public class RangeOverlapAction {
 		UserResponse userResponse = new UserResponse();
 		try {
 			RangeOverlapService overlapService = new RangeOverlapService();
-		    rangeList = overlapService.calculateMinimumRange(rangeList);
-		    userResponse.setResponse(rangeList);
+			rangeList = overlapService.calculateMinimumRange(rangeList);
+			userResponse.setResponse(rangeList);
 		} catch (NullPointerException e) {
 			userResponse.setError(Utility.LIST_EMPTY);
 		} catch (UnsupportedOperationException e) {
@@ -53,7 +57,7 @@ public class RangeOverlapAction {
 		}
 		return userResponse;
 	}
-	
+
 	/**
 	 * Prints the list in the console
 	 * @param rangeList
@@ -62,8 +66,8 @@ public class RangeOverlapAction {
 	public static void printRangeList(List<Range> rangeList) {
 		StringBuffer sb = new StringBuffer();
 		for (Range range : rangeList) {
-			sb.append("[").append(range.getLowerBound()).append(",").append(range.getUpperBound())
-					.append("]").append(" ");
+			sb.append("[").append(range.getLowerBound()).append(",").append(range.getUpperBound()).append("]")
+					.append(" ");
 
 		}
 		System.out.println(sb.toString());
