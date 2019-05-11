@@ -8,7 +8,7 @@ import model.UserResponse;
 import service.RangeOverlapService;
 import utils.Utility;
 
-public class RangeOverlapProblem {
+public class RangeOverlapAction {
 
 	/**
 	 * Input from UI/other services
@@ -24,7 +24,7 @@ public class RangeOverlapProblem {
 		rangeList.add(range3);
 		rangeList.add(range2);
 		rangeList.add(range1);
-		RangeOverlapProblem rangeOverlapProblem = new RangeOverlapProblem();
+		RangeOverlapAction rangeOverlapProblem = new RangeOverlapAction();
 		UserResponse minRangeList = rangeOverlapProblem.calculateMinimumRange(rangeList);
 		if(null != minRangeList.getError()) {
 			System.out.println(minRangeList.getError());
