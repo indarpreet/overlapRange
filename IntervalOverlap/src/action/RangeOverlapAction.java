@@ -66,8 +66,8 @@ public class RangeOverlapAction {
 	public static void printRangeList(List<Range> rangeList) {
 		StringBuffer sb = new StringBuffer();
 		for (Range range : rangeList) {
-			sb.append("[").append(range.getLowerBound()).append(",").append(range.getUpperBound()).append("]")
-					.append(" ");
+			sb.append(Utility.SQUARE_BRACKET_OPEN).append(range.getLowerBound()).append(Utility.COMMA).append(range.getUpperBound()).append(Utility.SQUARE_BRACKET_CLOSE)
+					.append(Utility.EMPTY_STRING);
 
 		}
 		System.out.println(sb.toString());
