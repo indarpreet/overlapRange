@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import action.RangeOverlapAction;
 import model.Range;
 import service.RangeOverlapService;
 
@@ -77,4 +78,39 @@ public class RangeOverlapTest {
 		assertEquals(0, rangeList.size());
 	}
 
+	@Test()
+	public void testArbitraryValues() {
+		Range range1 = new Range(93200, 95033);
+		Range range2 = new Range(94200, 94298);
+		Range range3 = new Range(94299, 94699);
+		List<Range> rangeList = new ArrayList<Range>();
+		rangeList.add(range1);
+		rangeList.add(range2);
+		rangeList.add(range3);
+		rangeList = service.calculateMinimumRange(rangeList);
+		// then
+		assertEquals(1, rangeList.size());
+		RangeOverlapAction.printRangeList(rangeList);
+	}
+
+	@Test()
+	public void testSingleValue() {
+		Range range1 = new Range(93200, 95033);
+		List<Range> rangeList = new ArrayList<Range>();
+		rangeList.add(range1);
+
+		rangeList = service.calculateMinimumRange(rangeList);
+		// then
+		assertEquals(1, rangeList.size());
+		RangeOverlapAction.printRangeList(rangeList);
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testWithArrayListEmptyValue() {
+		List<Range> rangeList = new ArrayList<Range>();
+		rangeList = service.calculateMinimumRange(rangeList);
+		// then
+		assertEquals(1, rangeList.size());
+		RangeOverlapAction.printRangeList(rangeList);
+	}
 }

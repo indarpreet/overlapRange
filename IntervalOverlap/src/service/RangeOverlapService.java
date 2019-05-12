@@ -19,10 +19,11 @@ public class RangeOverlapService {
 		if (!Utility.isEmptyOrNull(rangeList) && this.checkForUnsupportedFormat(rangeList)) {
 			int index = 0;
 			// sort range array by increasing order of their lower bounds
+			//Added comparator in Range model class
 			Collections.sort(rangeList);
 			for (int i = 1; i < rangeList.size(); i++) {
 				// merge Range object if they overlap
-				Range rangePrev = rangeList.get(i - 1);
+				Range rangePrev = rangeList.get(index);
 				Range rangeNext = rangeList.get(i);
 				if (rangeNext.getLowerBound() <= rangePrev.getUpperBound()) {
 					// merge them and change their upper and lower bounds
@@ -30,7 +31,7 @@ public class RangeOverlapService {
 					rangePrev.setUpperBound(Math.max(rangePrev.getUpperBound(), rangeNext.getUpperBound()));
 
 				} else {
-					// else just add the range in the array
+					// else just add the range in the array and increase the index value
 					index++;
 					rangeList.set(index, rangeNext);
 				}
